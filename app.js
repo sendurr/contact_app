@@ -1,7 +1,7 @@
 
 var module = angular.module("mycontactapp", []);
 
-module.value("appNameSvc","Contact App information");
+module.value("appNameSvc","Welcome to Contact App");
 module.value("appDataSvc", {
 	"title": "Contact App information",
 	"Author": "Sendurr",
@@ -10,6 +10,15 @@ module.value("appDataSvc", {
 module.constant("initializeSvc", function(){
 	console.log("The page is loaded");
 })
+
+module.factory("appFactorySvc",function(appNameSvc){
+	var data={
+		"title": appNameSvc,
+		"Author": "Sendurr",
+		builtdate: new Date().toDateString()
+	};
+	return data;
+});
 
 module.controller("MainCtrl", function(){
 	//console.log("mine");
@@ -26,12 +35,16 @@ module.controller("MainCtrl", function(){
     //console.log("here" + this.selectedContact); */
 });
 
-module.controller("headerCtrl", function(appDataSvc,initializeSvc){
-	this.apptitle = appDataSvc.title;
-	initializeSvc();
+module.controller("headerCtrl", function(appFactorySvc){
+	this.apptitle = appFactorySvc.title;
+	this.builtdate = appFactorySvc.builtdate;
+	this.Author = appFactorySvc.Author;
+	//initializeSvc();
 
 });
 
-module.controller("footerCtrl", function(appDataSvc){
-	this.apptitle = appDataSvc.title;
+module.controller("footerCtrl", function(appFactorySvc){
+	this.apptitle = "Site information";
+	this.builtdate = appFactorySvc.builtdate;
+	this.Author = appFactorySvc.Author;
 });
