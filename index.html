@@ -1,15 +1,50 @@
 <html ng-app="mycontactapp">
 <head>
 
-    <title>My contact app</title>
-    <script src="angular.min.js"></script>
+    <title>My  app</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
     <script src="app.js"></script>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
 </head>
 
 <body>
-
-<h1>My contact app</h1>
+    <h1>My contact app</h1>
+    <div class="container" ng-controller="MainCtrl as ctl">
+        <div class="row">
+            <ul class="list-group">
+                <div ng-repeat="contact in ctl.contacts" ng-click="ctl.selectContact($index)">
+                    <li class="list-group-item"><span>{{contact.name.first}}</span></li>
+                </div>
+            </ul>
+        </div>
+        <div class="row">
+            <div class="media">
+              <div class="media-left">
+                <a href="#">
+                  <img ng-src="{{ctl.selectedContact.picture.medium}}"></img>
+                </a>
+              </div>
+              <div class="media-body">
+                <h4 class="media-heading">{{ctl.selectedContact.name.first + " " + ctl.selectedContact.name.last}}</h4>
+                <div>
+                    <p>
+                        <h4>Location</h4>
+                    </p>
+                    <p>{{ctl.selectedContact.location.street + " " + ctl.selectedContact.location.city + " " + ctl.selectedContact.location.state }}</p>
+              </div>
+                <div>
+                    <p>
+                        <h4>Phone</h4>
+                    </p>
+                    <p>{{ctl.selectedContact.cell}}</p>
+              </div>
+            </div>
+        </div>
+    </div>
 </body>
-
 
 </html>
