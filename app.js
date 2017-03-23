@@ -1,8 +1,17 @@
 
 var module = angular.module("mycontactapp", []);
-module.controller("MainCtrl", main);
 
-function main (){
+module.value("appNameSvc","Contact App information");
+module.value("appDataSvc", {
+	"title": "Contact App information",
+	"Author": "Sendurr",
+	version: 1
+});
+module.constant("initializeSvc", function(){
+	console.log("The page is loaded");
+})
+
+module.controller("MainCtrl", function(){
 	//console.log("mine");
     this.contacts =[{"gender":"female","name":{"title":"ms","first":"galina","last":"alsemgeest"},"location":{"street":"2467 kanaalstraat","city":"beemster","state":"utrecht","postcode":38819},"email":"galina.alsemgeest@example.com","login":{"username":"greenwolf270","password":"gerard","salt":"sK2NZks4","md5":"b456562e7dee3b0e2e90e9f15f93c95f","sha1":"12584c96578ea80c580b0b8e32b997e41ef38db7","sha256":"3e8f5c6e2fed44c37fc3c4e6a51d75968e79283b3cdf49e5a9fdb4d0e3a14ca0"},"dob":"1968-12-13 23:59:51","registered":"2013-02-20 16:36:00","phone":"(945)-924-2833","cell":"(562)-410-8475","id":{"name":"BSN","value":"61720617"},"picture":{"large":"https://randomuser.me/api/portraits/women/30.jpg","medium":"https://randomuser.me/api/portraits/med/women/30.jpg","thumbnail":"https://randomuser.me/api/portraits/thumb/women/30.jpg"},"nat":"NL"},
                     {"gender":"female","name":{"title":"mrs","first":"séléna","last":"rey"},"location":{"street":"4691 rue barrier","city":"le havre","state":"creuse","postcode":52226},"email":"séléna.rey@example.com","login":{"username":"silvermeercat446","password":"chevelle","salt":"hdJS2BLT","md5":"57c80e6ef8d59a2bd270b78a7d424ef3","sha1":"df0bfebe21a8eac3905736956998f0964a8ed5cc","sha256":"3a998e679a1f82e08e4e9458876b437247d2da43111a4d9c2e6090109e4ffe97"},"dob":"1960-06-24 10:03:41","registered":"2005-03-13 18:35:00","phone":"01-06-29-77-86","cell":"06-13-46-79-70","id":{"name":"INSEE","value":"260519516636 47"},"picture":{"large":"https://randomuser.me/api/portraits/women/16.jpg","medium":"https://randomuser.me/api/portraits/med/women/16.jpg","thumbnail":"https://randomuser.me/api/portraits/thumb/women/16.jpg"},"nat":"FR"},
@@ -15,4 +24,14 @@ function main (){
 
 
     //console.log("here" + this.selectedContact); */
-}
+});
+
+module.controller("headerCtrl", function(appDataSvc,initializeSvc){
+	this.apptitle = appDataSvc.title;
+	initializeSvc();
+
+});
+
+module.controller("footerCtrl", function(appDataSvc){
+	this.apptitle = appDataSvc.title;
+});
