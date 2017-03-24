@@ -15,4 +15,19 @@ module.service("contactDataSvc",function($http,$q){
         });
         return deferred.promise;
     }
+
+    self.putContact = function(updateData){
+    	var deferred = $q.defer();
+    	$http.put("http://localhost:3000/contacts/" + updateData.id , updateData).then(
+    		function(response){
+    			//console.log(response);
+    			deferred.resolve(response);
+
+    		},
+    		function(response){
+				console.log(response);
+				deferred.reject(response);
+    		});
+    	return deferred.promise;
+    }
 });
