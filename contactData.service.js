@@ -30,4 +30,19 @@ module.service("contactDataSvc",function($http,$q){
     		});
     	return deferred.promise;
     }
+
+    self.postContact = function(newData){
+    	var deferred = $q.defer();
+    	$http.post("http://localhost:3000/contacts", newData).then(
+    		function(response){
+    			//console.log(response);
+    			deferred.resolve(response);
+
+    		},
+    		function(response){
+				console.log(response);
+				deferred.reject(response);
+    		});
+    	return deferred.promise;
+    }
 });

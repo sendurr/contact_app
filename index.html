@@ -8,6 +8,7 @@
     <script src="appName.service.js"></script>
     <script src="contact.controller.js"></script>
     <script src="contactData.service.js"></script>
+    <script src="defaultImage.service.js"></script>
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
@@ -20,6 +21,7 @@
     <div class="container" ng-controller="MainCtrl as ctl">
         <div class="row">
             <div class="col-md-6">
+                <button ng-click="ctl.addData()" class="btn btn-default" ng-hide="ctl.addMode">Add contact</button>
                 <ul class="list-group">
                     <div ng-repeat="contact in ctl.contacts" ng-click="ctl.selectContact($index)">
                         <li class="list-group-item"><span>{{contact.name.first}}</span></li>
@@ -29,7 +31,7 @@
             <div class="col-md-6">
             <div class ="aler alert-success" ng-ig="ctl.successMsg">{{ctl.successMsg}}</div>
             <div class ="aler alert-danger" ng-ig="ctl.failedMsg">{{ctl.failedMsg}}</div>
-                <div class="media">
+            <div class="media" ng-hide="ctl.addMode">
                   <div class="media-left">
                     <a href="#">
                       <img ng-src="{{ctl.selectedContact.picture.medium}}"></img>
@@ -58,6 +60,30 @@
                   </div>
                 </div>
             </div>
+                <div class="media" ng-show="ctl.addMode">
+                  <div class="media-left">
+                    <a href="#">
+                      <img ng-src="{{ctl.selectedContact.picture.medium}}"></img>
+                    </a>
+                  </div>
+                  <div class="media-body">            
+                    <p class="media-heading" >First Name:<input type="text" ng-model="ctl.selectedContact.name.first"></p>
+                    <p> Last Name:</input><input type="text" ng-model="ctl.selectedContact.name.last"></input></p>
+                    <button ng-click="ctl.saveNewData()">save</button>
+
+                    <div>
+                        <p>
+                            <h4>Location</h4>
+                        </p>
+                        <p><span><b>Street:</b><input type="text" ng-model="ctl.selectedContact.location.street">
+                        <p><span><b>City:</b><input type="text" ng-model="ctl.selectedContact.location.city">
+                        <p><span><b>State:</b><input type="text" ng-model="ctl.selectedContact.location.state">
+                    </div>
+                    <div>
+                        <p><span><b>Phone:</b><input type="text" ng-model="ctl.selectedContact.cell">
+                    <div>
+                  </div>
+                </div>
         </div>
     </div>
 </body>
