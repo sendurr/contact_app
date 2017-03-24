@@ -20,6 +20,15 @@ module.factory("appFactorySvc",function(appNameSvc){
 	return data;
 });
 
+function appConfig (appNameSvc){
+		this.title = appNameSvc,
+		this.Author = "Sendurr",
+		this.builtdate =  new Date().toDateString()
+}
+
+module.service("appServiceSvc",appConfig);
+
+
 module.controller("MainCtrl", function(){
 	//console.log("mine");
     this.contacts =[{"gender":"female","name":{"title":"ms","first":"galina","last":"alsemgeest"},"location":{"street":"2467 kanaalstraat","city":"beemster","state":"utrecht","postcode":38819},"email":"galina.alsemgeest@example.com","login":{"username":"greenwolf270","password":"gerard","salt":"sK2NZks4","md5":"b456562e7dee3b0e2e90e9f15f93c95f","sha1":"12584c96578ea80c580b0b8e32b997e41ef38db7","sha256":"3e8f5c6e2fed44c37fc3c4e6a51d75968e79283b3cdf49e5a9fdb4d0e3a14ca0"},"dob":"1968-12-13 23:59:51","registered":"2013-02-20 16:36:00","phone":"(945)-924-2833","cell":"(562)-410-8475","id":{"name":"BSN","value":"61720617"},"picture":{"large":"https://randomuser.me/api/portraits/women/30.jpg","medium":"https://randomuser.me/api/portraits/med/women/30.jpg","thumbnail":"https://randomuser.me/api/portraits/thumb/women/30.jpg"},"nat":"NL"},
@@ -43,8 +52,8 @@ module.controller("headerCtrl", function(appFactorySvc){
 
 });
 
-module.controller("footerCtrl", function(appFactorySvc){
+module.controller("footerCtrl", function(appFactorySvc,appServiceSvc){
 	this.apptitle = "Site information";
-	this.builtdate = appFactorySvc.builtdate;
-	this.Author = appFactorySvc.Author;
+	this.builtdate = appServiceSvc.builtdate;
+	this.Author = appServiceSvc.Author;
 });
