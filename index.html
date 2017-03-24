@@ -4,6 +4,10 @@
     <title>My  app</title>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
     <script src="app.js"></script>
+    <script src="appConfig.service.js"></script>
+    <script src="appName.service.js"></script>
+    <script src="contact.controller.js"></script>
+    <script src="contactData.service.js"></script>
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
@@ -13,9 +17,6 @@
 
 <body>
     <h1>My contact app</h1>
-    <div class="container" ng-controller="headerCtrl as head">
-        <h4>{{head.apptitle}}</h4>
-    </div>
     <div class="container" ng-controller="MainCtrl as ctl">
         <div class="row">
             <ul class="list-group">
@@ -47,10 +48,6 @@
               </div>
             </div>
         </div>
-    </div>
-    <div ng-controller="footerCtrl as foot">
-        <h4>{{foot.apptitle}}</h4>
-        <p>Author: {{foot.Author}} LastUpdated:{{foot.builtdate}}</p>
     </div>
 </body>
 
